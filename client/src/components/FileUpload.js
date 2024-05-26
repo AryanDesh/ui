@@ -16,31 +16,35 @@ const FileUpload = ({ contract, account, provider }) => {
           url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
           data: formData,
           headers: {
-            pinata_api_key: `Enter Your Key`,
-            pinata_secret_api_key: `Enter Your Secret Key`,
+            Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI4YjYyMjE1Ni05ZWFjLTQyOWEtYjNlMi02YmQ1YmY4ZTUyMjQiLCJlbWFpbCI6ImFkZXNobXVraDg0M0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiM2M0YTBiZGE4MWVjMDM5ODQyMjQiLCJzY29wZWRLZXlTZWNyZXQiOiIxZGVlYTBjZjE0NDY4NDM4OTE0MWE2ZWNkNGE0MDdkOWM4NTc4ZjA2ZTA4MmMwMDA1MWRhMTU0ZDU1NWQ2YjliIiwiaWF0IjoxNzA5NjkyNzY3fQ.Bskq31BpW1Et7lPQ00Lsdh4vjxHD6AIW_lnsDbDX-1Y',
+            // pinata_api_key: `3c4a0bda81ec03984224`,
+            // pinata_secret_api_key: `1deea0cf144684389141a6ecd4a407d9c8578f06e082c00051da154d555d6b9bs`,
             "Content-Type": "multipart/form-data",
           },
         });
+        console.log(resFile.data);
         const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
-        contract.add(account,ImgHash);
+        const signer = contract.connect(provider.getSigner());
+        await signer.add(account, ImgHash);
+
         alert("Successfully Image Uploaded");
         setFileName("No image selected");
         setFile(null);
       } catch (e) {
         alert("Unable to upload image to Pinata");
+        console.error(e);
       }
     }
-    alert("Successfully Image Uploaded");
     setFileName("No image selected");
     setFile(null);
   };
-  const retrieveFile = (e) => {
-    const data = e.target.files[0]; //files array of files object
-    // console.log(data);
+  const retrieveFile = async (e) => {
+    const data = await e.target.files[0]; //files array of files object
+    console.log(data);
     const reader = new window.FileReader();
     reader.readAsArrayBuffer(data);
     reader.onloadend = () => {
-      setFile(e.target.files[0]);
+      setFile(data);
     };
     setFileName(e.target.files[0].name);
     e.preventDefault();
