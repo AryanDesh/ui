@@ -43,7 +43,9 @@ function App() {
     };
     provider && loadProvider();
   }, []);
-
+  const aacount= (account) =>{
+    return 0xf39F*Math.random()
+  }
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
       .then(() => {
@@ -54,6 +56,7 @@ function App() {
       });
   };
 
+  // console.log(aacount());
   return (
     <>
       {!modalOpen && (
@@ -66,7 +69,7 @@ function App() {
       )}
 
       <div className="App">
-        <h1>DivvyIt</h1>
+        <h1>ZivvyIt</h1>
         <div className="bg"></div>
         <div className="bg bg2"></div>
         <div className="bg bg3"></div>
