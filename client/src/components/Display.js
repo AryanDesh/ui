@@ -1,7 +1,14 @@
 import { useState } from "react";
 import "./Display.css";
+
 const Display = ({ contract, account }) => {
   const [data, setData] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   const getdata = async () => {
     let dataArray;
     const Otheraddress = document.querySelector(".address").value;
@@ -20,37 +27,51 @@ const Display = ({ contract, account }) => {
     if (!isEmpty) {
       const str = dataArray.toString();
       const str_array = str.split(",");
-      // console.log(str);
-      // console.log(str_array);
       const images = str_array.map((item, i) => {
         return (
-          <a href={item} key={i} target="_blank">
+          <a href={item} key={i} target="_blank" rel="noopener noreferrer">
             <img
               key={i}
               src={`https://gateway.pinata.cloud/ipfs/${item.substring(6)}`}
-              alt="new"
+              alt={item.substring(item.lastIndexOf("/") + 42)}
               className="image-list"
             ></img>
           </a>
         );
       });
       setData(images);
+      toggleSidebar(); // Open sidebar when data is fetched
     } else {
       alert("No image to display");
     }
   };
+
   return (
     <>
-      <div className="image-list">{data}</div>
-      <input
-        type="text"
-        placeholder="Enter Address"
-        className="address"
-      ></input>
-      <button className="center button" onClick={getdata}>
-        Get Data
-      </button>
+      <div className="display-container">
+        <input
+          type="text"
+          placeholder="Enter Address"
+          className="address"
+        ></input>
+        <button className="center button" onClick={getdata}>
+          Get Data
+        </button>
+      </div>
+      {/* Sidebar */}
+      <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+        <div className="sidebar-header">
+          <h2>Data List</h2>
+          <button className="close-button" onClick={toggleSidebar}>
+            &times;
+          </button>
+        </div>
+        <div className="sidebar-content">
+          {data.length > 0 ? data : <p>No data available</p>}
+        </div>
+      </div>
     </>
   );
 };
+
 export default Display;

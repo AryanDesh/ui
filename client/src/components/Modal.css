@@ -1,4 +1,191 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #282c34;
+  color: white;
+  overflow-x: hidden;
+}
+
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4em;
+  color: #61dafb;
+  margin-top: 20px;
+}
+
+@keyframes moveBackground {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-50px); }
+  100% { transform: translateY(0); }
+}
+
+.account-info {
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+
+.share {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.share:hover {
+  background-color: #21a1f1;
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Modal styles */
 .modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modalContainer {
+  width: 500px;
+  border-radius: 12px;
+  background-color: #f0f0f0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  text-align: center;
+}
+
+.modalContainer .title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+}
+
+.titleCloseBtn button:hover {
+  color: #000;
+}
+
+.modalContainer .body {
+  flex: 1;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.modalContainer .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modalContainer .footer button {
+  width: 100px;
+  height: 35px;
+  border: none;
+  background-color: #61dafb;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modalContainer .footer button:hover {
+  background-color: #21a1f1;
+}
+
+#cancelBtn {
+  background-color: crimson;
+}
+
+#cancelBtn:hover {
+  background-color: darkred;
+}
+
+.address {
+  display: block;
+  margin: auto;
+  height: 30px;
+  width: 330px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-top: 15px;
+}
+
+input[type="text"]:focus {
+  background-color: lightblue;
+}
+
+/* Component styles */
+.FileUpload, .Display {
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .modalBackground {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.2);
@@ -81,4 +268,4 @@
 
 input[type="text"]:focus {
   background-color: lightblue;
-}
+} */

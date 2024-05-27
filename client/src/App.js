@@ -12,7 +12,6 @@ function App() {
   const [provider, setProvider] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  // console.log(account);
   useEffect(() => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -36,7 +35,6 @@ function App() {
           Upload.abi,
           signer
         );
-        //console.log(contract);
         setContract(contract);
         setProvider(provider);
       } else {
@@ -45,6 +43,17 @@ function App() {
     };
     provider && loadProvider();
   }, []);
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        alert("Account address copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   return (
     <>
       {!modalOpen && (
@@ -57,13 +66,13 @@ function App() {
       )}
 
       <div className="App">
-        <h1 style={{ color: "white" }}>DivvyIt</h1>
-        <div class="bg"></div>
-        <div class="bg bg2"></div>
-        <div class="bg bg3"></div>
+        <h1>DivvyIt</h1>
+        <div className="bg"></div>
+        <div className="bg bg2"></div>
+        <div className="bg bg3"></div>
 
-        <p style={{ color: "white" }}>
-          Account : {account ? account : "Not connected"}
+        <p className="account-info" onClick={() => copyToClipboard(account)}>
+          Metamask Account  {account ? "Connected" : "Not connected"}
         </p>
         <FileUpload
           account={account}

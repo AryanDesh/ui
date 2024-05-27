@@ -1,5 +1,20 @@
+/* FileUpload.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #282c34;
+  color: white;
+}
+
 .top {
   margin: 40px;
+  text-align: center;
 }
 
 input[type="file"] {
@@ -7,45 +22,54 @@ input[type="file"] {
 }
 
 .choose {
-  background-color: initial;
-  background-image: linear-gradient(-180deg, #5aff15, #00b712);
+  background: linear-gradient(135deg, #00b712 0%, #5aff15 100%);
+  border: none;
   border-radius: 6px;
-  color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 6px;
-  margin-right: 10px;
-  padding-bottom: 10px;
-}
-.choose:hover {
-  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
-}
-.textArea {
   color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.choose:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.textArea {
+  display: block;
+  margin: 20px 0;
+  font-size: 18px;
 }
 
 .upload {
-  border: 1px solid #13aa52;
   background-color: #13aa52;
-  color: #ffffff;
-  padding: 5px 10px;
+  border: none;
   border-radius: 6px;
-  margin-left: 10px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .upload:hover {
-  border: 1px solid #13aa52;
-  background-color: #a5efc1;
-  color: #ffffff;
-  padding: 5px 10px;
+  background-color: #10a046;
+  transform: scale(1.05);
 }
 
 .upload:disabled,
 .upload[disabled] {
-  border: 1px solid #999999;
   background-color: #cccccc;
-  color: #666666;
+  cursor: not-allowed;
 }
 
-div {
-  padding: 5px 10px;
+.form {
+  display: inline-block;
+  text-align: left;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
